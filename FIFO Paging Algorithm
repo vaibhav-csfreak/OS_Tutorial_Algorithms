@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+int page_replacement(vector<int> p,int frames)
+{
+    int fault=0;
+    unordered_map<int,int> m;
+    queue<int> q;
+    for(auto i:p)
+    {
+        if(m.size()<frames)
+        {
+            if(m[i]==0)
+            {
+                m[i]++;
+                q.push(i);
+                fault++;
+            }
+        }
+        else
+        {
+            if(m[i]==0)
+            {
+                int f=q.front();
+                q.pop();
+                q.push(i);
+                m[f]=0;
+                m[i]++;
+                fault++;
+            }
+        }
+    }
+    return fault;
+}
+int main()
+{
+    int n;
+    cout<<"Enter the number of processes : \n";
+    cin>>n;
+    vector<int> p(n);
+    cout<<"Enter the processes : \n";
+    for(auto& i:p) cin>>i;
+    int frames;
+    cout<<"Enter the number of frames : \n";
+    cin>>frames;
+    int fault = page_replacement(p,frames);
+    cout<<"Total number of faults : "<<fault<<endl;
+}
