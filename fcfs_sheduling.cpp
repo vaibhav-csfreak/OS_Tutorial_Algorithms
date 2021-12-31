@@ -6,6 +6,7 @@ vector<int> bt,ct,tat,wt,processed,at1;
 vector<pair<int,int>> at;
 int timer = 0;
 queue<int> q;
+int n;
 
 void init(int n)
 {
@@ -28,10 +29,18 @@ void cal()
         wt[pid] = tat[pid]-bt[pid];
     }
 }
+void display()
+{
+    cout << "Process " << "AT\t" << "BT\t" << "CT\t" << "TAT\t" << "WT \n";
+    for(int i=1;i<=n;i++)
+    {
+        cout << 'P' << i << "\t" << at1[i] << "\t" << bt[i] << "\t" <<ct[i] << "\t"<< tat[i] << "\t" << wt[i] << "\n";
+    } 
+}
 
 int main()
 {
-    int n;
+   
     cout << "Enter number of processes\n";
     cin >> n;
 
@@ -62,6 +71,10 @@ int main()
     }
 
     //avg tat
+
+
+    display();
+
     int tot=0;
     for(int i=1;i<=n;i++)
     {
