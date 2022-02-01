@@ -22,7 +22,7 @@ MOV DL,':'
 MOV AH,02H
 INT 21H
 
-: to print second
+; to print second
 MOV AL,DH
 AAM
 MOV BX,AX
