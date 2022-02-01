@@ -1,0 +1,46 @@
+.MODEL SMALL
+.CODE
+
+MOV AH,2CH ; to fetch current time which are stored in CH,CL,DH
+INT 21H
+
+; to print hour
+MOV AL,CH
+AAM ; ascii adjust after multiplication
+MOV BX,AX
+CALL DISPLAY
+MOV DL,':'
+MOV AH,02H
+INT 21H
+
+; to print minute
+MOV AL,CL
+AAM
+MOV BX,AX
+CALL DISPLAY
+MOV DL,':'
+MOV AH,02H
+INT 21H
+
+: to print second
+MOV AL,DH
+AAM
+MOV BX,AX
+CALL DISPLAY
+
+MOV AH,4CH
+INT 21H
+
+
+DISPLAY PROC NEAR
+MOV DL,BH
+ADD DL,30H
+MOV AH,02H
+INT 21H
+MOV DL,BL
+ADD DL,30H
+MOV AH,02H
+INT 21H
+RET
+DISPLAY ENDP
+END
